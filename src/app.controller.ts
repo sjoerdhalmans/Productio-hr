@@ -4,11 +4,11 @@ import { MessagePattern } from '@nestjs/microservices'
 import { User } from './entities/user.entity';
 import { UpdatePassword } from './DTO\'s/password.dto';
 import { throws } from 'node:assert';
-import { UpdateUser } from './DTO\'s/user.dto';
+import { assignRoles, UpdateUser } from './DTO\'s/user.dto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   private logger = new Logger('AppController');
 
@@ -25,6 +25,16 @@ export class AppController {
   @MessagePattern('update_user')
   async updateUser(@Body() userDto: UpdateUser) {
     this.appService.updateUser(userDto);
+  }
+
+  @MessagePattern('assign_roles')
+  async assignRoles(@Body() roleDto: assignRoles) {
+    this.appService.assignRoles(roleDto);
+  }
+
+  @MessagePattern('remove_roles')
+  async removeRoles(@Body() roleDto: assignRoles) {
+    this.appService.removeRoles(roleDto);
   }
 
   @MessagePattern('ping_me')
