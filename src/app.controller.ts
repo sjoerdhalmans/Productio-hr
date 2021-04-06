@@ -4,6 +4,7 @@ import { MessagePattern } from '@nestjs/microservices'
 import { User } from './entities/user.entity';
 import { UpdatePassword } from './DTO\'s/password.dto';
 import { throws } from 'node:assert';
+import { UpdateUser } from './DTO\'s/user.dto';
 
 @Controller()
 export class AppController {
@@ -19,6 +20,11 @@ export class AppController {
   @MessagePattern('update_password')
   async updatePassword(@Body() passwordDto: UpdatePassword) {
     this.appService.updatePassword(passwordDto);
+  }
+
+  @MessagePattern('update_user')
+  async updateUser(@Body() userDto: UpdateUser) {
+    this.appService.updateUser(userDto);
   }
 
   @MessagePattern('ping_me')
