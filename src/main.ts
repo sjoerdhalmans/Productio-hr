@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 
 const logger = new Logger('Main');
@@ -10,12 +10,12 @@ const microserviceOptions = {
   options: {
     url: 'redis://localhost:6379',
   },
-}
+} as MicroserviceOptions
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(AppModule, microserviceOptions);
-  app.listen(() => {
-    logger.log('Microservice is listening... ');
-  });
+  const app = await NestFactory.create(AppModule);
+  app.connectMicroservice<MicroserviceOptions>(microserviceOptions)
+  app.listen(8085);
+  logger.log('Microservice is listening... ');
 }
 bootstrap();

@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { UpdatePassword } from './DTO\'s/password.dto';
 import { throws } from 'node:assert';
 import { assignRoles, UpdateUser } from './DTO\'s/user.dto';
+import { get } from 'node:http';
 
 @Controller()
 export class AppController {
@@ -35,6 +36,11 @@ export class AppController {
   @MessagePattern('remove_roles')
   async removeRoles(@Body() roleDto: assignRoles) {
     this.appService.removeRoles(roleDto);
+  }
+
+  @Get('/getall')
+  async getAll(): Promise<any[]> {
+    return await this.appService.getAll();
   }
 
   @MessagePattern('ping_me')
