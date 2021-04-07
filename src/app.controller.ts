@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern } from '@nestjs/microservices'
 import { User } from './entities/user.entity';
@@ -43,9 +43,24 @@ export class AppController {
     return await this.appService.getAll();
   }
 
+  @Get('/userroles/:id')
+  async getUserRoles(@Param('id') id: string): Promise<any[]> {
+    return await this.appService.getUserRoles(id);
+  }
+
+  @Get('/roles')
+  async getRoles(): Promise<any[]> {
+    return await this.appService.getRoles();
+  }
+
   @MessagePattern('ping_me')
   async PING() {
     this.logger.log('pong')
     return 2
+  }
+
+  @Get('/token')
+  async Token() {
+    console.log(await this.appService.getToken());
   }
 }

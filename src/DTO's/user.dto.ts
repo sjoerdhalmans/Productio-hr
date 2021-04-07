@@ -7,6 +7,5 @@ export class UpdateUser {
 
 export class assignRoles {
   userId: string;
-  provider: string;
   roles: string[];
 }
