@@ -9,16 +9,11 @@ import { json } from 'express';
 @Injectable()
 export class AppService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+
   ) { }
 
   public accumulate(data: number[]): number {
     return (data || []).reduce((a, b) => Number(a) + Number(b));
-  }
-
-  public add(user: User) {
-    this.usersRepository.save(user);
   }
 
   public updatePassword(passUpdate: UpdatePassword) {

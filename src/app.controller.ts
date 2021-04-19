@@ -13,11 +13,6 @@ export class AppController {
 
   private logger = new Logger('AppController');
 
-  @MessagePattern('add_user')
-  async add(@Body() user: User) {
-    return this.appService.add(user);
-  }
-
   @MessagePattern('update_password')
   async updatePassword(@Body() passwordDto: UpdatePassword) {
     this.appService.updatePassword(passwordDto);

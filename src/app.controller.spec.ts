@@ -15,4 +15,11 @@ describe('AppController', () => {
 
     appController = app.get<AppController>(AppController);
   });
+
+  describe('findAll', () => {
+
+    it('should return an array of users', async () => {
+      expect(await (await appController.getAll()).length).toBeGreaterThan(0);
+    })
+  })
 });
