@@ -12,7 +12,7 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   private logger = new Logger('AppController');
-
+  //test
   @MessagePattern('update_password')
   async updatePassword(@Body() passwordDto: UpdatePassword) {
     this.appService.updatePassword(passwordDto);
