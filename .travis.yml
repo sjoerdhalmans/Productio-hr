@@ -12,7 +12,7 @@ cache:
         - "node_modules"
 
 after_success:
-    - docker build -t requisitions .
+    - docker build -t hr .
     - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
     - chmod +x send.sh
     - ./send.sh success $WEBHOOK_URL
@@ -24,11 +24,11 @@ after_failure:
 
 before_deploy:
     - docker login -u "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD" docker.io ;
-    - docker tag requisitions $DOCKER_USERNAME/requisitions:latest
+    - docker tag hr $DOCKER_USERNAME/hr:latest
 
 deploy:
     provider: script
-    script: docker push $DOCKER_USERNAME/requisitions:latest ;
+    script: docker push $DOCKER_USERNAME/hr:latest ;
 
 notifications:
     email: false
