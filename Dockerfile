@@ -10,4 +10,4 @@ FROM node:10-alpine
 WORKDIR /app
 COPY --from=hr /app ./
 CMD ["npm", "run", "start:prod"]
-
+EXPOSE 8085
