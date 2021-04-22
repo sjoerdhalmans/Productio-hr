@@ -2,8 +2,8 @@
     "type": "mysql",
     "host": "172.18.0.5",
     "port": 3306,
-    "username": "pi",
-    "password": "raspberry",
+    "username": "root",
+    "password": "secret",
     "database": "productio_hr",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true
