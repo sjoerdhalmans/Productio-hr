@@ -19,6 +19,7 @@ export class AppService {
   public updatePassword(passUpdate: UpdatePassword) {
     var axios = require("axios").default;
 
+    //Sends password reset email
     var options = {
       method: 'POST',
       url: 'https://deathrun.auth0.com/dbconnections/change_password',
