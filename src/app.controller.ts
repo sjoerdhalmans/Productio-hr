@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern } from '@nestjs/microservices'
-import { User } from './entities/user.entity';
 import { UpdatePassword } from './DTO\'s/password.dto';
 import { throws } from 'node:assert';
 import { assignRoles, UpdateUser } from './DTO\'s/user.dto';
@@ -13,22 +12,22 @@ export class AppController {
 
   private logger = new Logger('AppController');
   //tes
-  @MessagePattern('update_password')
+  @MessagePattern('updatePassword')
   async updatePassword(@Body() passwordDto: UpdatePassword) {
     this.appService.updatePassword(passwordDto);
   }
 
-  @MessagePattern('update_user')
+  @MessagePattern('updateUser')
   async updateUser(@Body() userDto: UpdateUser) {
     this.appService.updateUser(userDto);
   }
 
-  @MessagePattern('assign_roles')
+  @MessagePattern('assignRoles')
   async assignRoles(@Body() roleDto: assignRoles) {
     this.appService.assignRoles(roleDto);
   }
 
-  @MessagePattern('remove_roles')
+  @MessagePattern('removeRoles')
   async removeRoles(@Body() roleDto: assignRoles) {
     this.appService.removeRoles(roleDto);
   }

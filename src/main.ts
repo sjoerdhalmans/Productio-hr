@@ -8,7 +8,7 @@ const logger = new Logger('Main');
 const microserviceOptions = {
   transport: Transport.REDIS,
   options: {
-    host: 'redis'
+    host: '127.0.0.1'
   },
 } as MicroserviceOptions
 
